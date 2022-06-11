@@ -1,11 +1,12 @@
 import { useContext, useState, useEffect} from 'react'
+import {useNavigate } from 'react-router-dom'
 import cartContext from '../../store/cart-context'
 import classes from './cart.module.css'
 
 
 function Cart(props) {
     const ctx = useContext(cartContext)
-
+    const navigate = useNavigate()
     const [cartArray, setcartArray] = useState(ctx.cart.items)
     const authToken = sessionStorage.getItem('token')
 
@@ -39,7 +40,7 @@ function Cart(props) {
     }
 
     function addtoOrder() {
-        if(authToken.length){
+        if(props.isAuth && authToken.length){
             //payment
             fetch(process.env.REACT_APP_BACKEND_URL +'/create-payment',{
                 method: 'POST',
@@ -77,6 +78,7 @@ function Cart(props) {
             // )
         }else{
             window.alert('To Place Orders, Please Login or Signup')
+            navigate('/auth/login')
         }
     }
     return <div>

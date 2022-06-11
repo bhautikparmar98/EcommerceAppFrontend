@@ -1,11 +1,12 @@
 import './Header.css'
-import {NavLink, useLocation} from 'react-router-dom'
+import {NavLink, useLocation, useNavigate} from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 
 function Header(props){
 
   const [windowWidth, setwindowWidth] = useState(window.innerWidth)
+  const navigate = useNavigate()
 
   //const [isMobile,setIsMobile] = useState(false)
 
@@ -37,9 +38,12 @@ function Header(props){
     props.setisAuth(false)
     clearTimeout(props.Timer())
   }
+  function navigatetoHome(){
+    navigate('/')
+  }
   return <header className="main-header">
     <nav className='main-nav'>
-    <h2> Enjoy your Shopping!!</h2>
+    <h2 className='heading' onClick={navigatetoHome}> Enjoy your Shopping!!</h2>
     <button className='mobile-menu-btn' onClick={toggleButton}><span><div></div><div></div><div></div></span></button>
     {/* {isMobile && <button><span><div></div><div></div><div></div></span></button>} */}
       { showMobileMenu &&

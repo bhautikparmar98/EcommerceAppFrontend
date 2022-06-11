@@ -2,6 +2,9 @@
     background: rgba(219, 64, 64, 0.794);
     padding: 8px 5px;
 }
+.heading{
+    cursor: pointer;
+}
 .main-header h2{
     font-weight: bold;
     display: inline-block;
